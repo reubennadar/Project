@@ -1,35 +1,37 @@
 (function () {
   'use strict'
-  angular.module('myFirstApp',[])
-  .controller('myFirstController',DIController);
-  DIController.$inject=['$scope','$filter','$injector'];
-  function DIController($scope,
-    $filter,
-    $injector) {
-    $scope.name="Reuben";
-    $scope.totalvalue="";
-    $scope.displayNumeric=function () {
-      var enteredstring=$scope.name;
-      var totalnumericvalue=calculatenumericvalue(enteredstring);
-      $scope.totalvalue=totalnumericvalue;
-    }
-
-    function calculatenumericvalue(string) {
-      var totalnumericvalues=0;
-      for(var i=0;i<string.length;i++)
+  angular.module('LunchCheck',[])
+  .controller('LunchCheckController',LunchCheckfunction);
+  LunchCheckfunction.$inject=['$scope','$filter'];
+  function LunchCheckfunction($scope) {
+    $scope.lunchText="";
+    $scope.Message="";
+    $scope.lunchSubmit=function () {
+      const lt=$scope.lunchText;
+      if(lt=="")
       {
-        totalnumericvalues+=string.charCodeAt(i);
+        $scope.Message="Please enter data first";
       }
-      return totalnumericvalues;
-    }
-    $scope.uppercasevalue="";
-    $scope.upper=function () {
-      var uppers=$filter('uppercase');
-      $scope.uppercasevalue=uppers($scope.uppercasevalue);
-      console.log($injector.annotate(DIController));
+      else {
+        const words=lt.split(',');
+        console.log(words.length);
+        var count=words.length;
+        for(var i=0;i<words.length;i++)
+        {
+          if(words[i]==" "||words[i]=="")
+          {
+            count--;
+          }
+        }
+        if(count<=3)
+        {
+          $scope.Message="Enjoy";
+        }
+        else {
+          $scope.Message="Too Much";
+        }
+      }
 
     }
-    console.log(DIController.toString());
-
   }
 })();
