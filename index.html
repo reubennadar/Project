@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" ng-app="myFirstApp">
   <head>
     <meta charset="utf-8">
-    <title>Hello Coursera</title>
+    <title>My First App</title>
+    <script src="angular.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>Hello Coursera , This is Reuben here </h1>
+<h1>My First angular js </h1>
+<div ng-controller="myFirstController">
+
+<input type="text" ng-model="name"ng-keyup="displayNumeric()">
+Entered name is: {{totalvalue}}
+<input type="text" ng-model="uppercasevalue" ng-blur="upper()">
+<!-- <script type="text/javascript">
+  var elem=document.querySelector("[ng-app]");
+  console.log(elem);
+  console.log(elem.getAttribute('ng-app'));
+</script> -->
+</div>
   </body>
 </html>
